@@ -1,4 +1,4 @@
-experiments_dir: /data/sheng/e2e/e2e_nlg_challenge_2017/experiments
+experiments_dir: ./experiments
 log_level: INFO
 random_seed: 1
 
@@ -7,7 +7,7 @@ mode: predict
 
 # If mode is 'predict', specify the model name,
 # e.g. /path/to/model/weights.epoch5
-model_fn: experiments/select_model_v1/weights.epoch8
+model_fn: ./experiments-dir/e2e_model_MLP_seed1-emb256-hid512-drop0.0-bs128-lr0.1_2020-Apr-20_03:52:30/weights.epoch30
 
 # Model module names
 data-module: components.data.e2e_data_MLP
@@ -17,10 +17,10 @@ evaluation-module: components.evaluator.e2e_evaluator
 
 data_params:
 
-  train_data: /data/sheng/e2e/data/trainset.csv
-  #dev_data: /data/sheng/e2e/data/devset.csv
-  dev_data: /data/sheng/e2e/data/testset_w_refs.csv
-  test_data: /data/sheng/e2e/data/testset_w_refs.csv # specify the file to make preictions on
+  train_data: ./data/trainset.csv
+  #dev_data: ./data/devset.csv
+  dev_data: ./data/testset_w_refs.csv
+  test_data: ./data/testset_w_refs.csv # specify the file to make preictions on
 
   max_src_len: 50
   max_tgt_len: 100

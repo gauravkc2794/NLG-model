@@ -1,4 +1,4 @@
-experiments_dir: /data/sheng/e2e/e2e-nlg-challenge-2017/experiments
+experiments_dir: ./experiments-dir
 log_level: INFO
 random_seed: 1
 
@@ -17,8 +17,8 @@ evaluation-module: components.evaluator.e2e_evaluator
 
 data_params:
 
-  train_data: /data/sheng/e2e/data/trainset.csv
-  dev_data: /data/sheng/e2e/data/devset.csv
+  train_data: ./data/trainset.csv
+  dev_data: ./data/devset.csv
   test_data:
 
   max_src_len: 50
@@ -41,9 +41,9 @@ model_params:
     dropout: 0.0
 
 training_params:
-  evaluate_prediction: True
+  evaluate_prediction: False
   save_model_each_epoch: True
   n_epochs: 30
-  batch_size: 16
+  batch_size: 128
   optimizer: SGD
   learning_rate: 0.1
