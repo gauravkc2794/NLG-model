@@ -1,6 +1,6 @@
 import logging
 from collections import Counter
-from components.constants import NAME_TOKEN, NEAR_TOKEN
+from components.constants import NAME_TOKEN, NEAR_TOKEN, AREA_TOKEN
 from components.data.common import ids2var
 import torch
 
@@ -176,6 +176,12 @@ class BaseEvaluator(object):
 
                 elif tok == NEAR_TOKEN:
                     l = this_snt_lex[1]
+                    if not l is None:
+                        this_snt_toks.append(l)
+                
+                elif tok == AREA_TOKEN:
+                    l = this_snt_lex[2]
+                    print(l)
                     if not l is None:
                         this_snt_toks.append(l)
 

@@ -4,6 +4,7 @@ EOS_TOKEN = '</s>'
 UNK_TOKEN = '<unk>'
 NAME_TOKEN = '<name>'
 NEAR_TOKEN = '<near>'
+AREA_TOKEN = '<area>'
 
 PAD_ID = 0
 BOS_ID = 1

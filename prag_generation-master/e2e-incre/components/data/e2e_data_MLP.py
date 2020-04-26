@@ -7,7 +7,7 @@ import logging
 from components.data import BaseDataClass
 from components.data.vocabulary import VocabularyShared
 from components.data.common import EOS_ID, PAD_ID, pad_snt
-from components.constants import NAME_TOKEN, NEAR_TOKEN, MR_KEYMAP
+from components.constants import NAME_TOKEN, NEAR_TOKEN, AREA_TOKEN, MR_KEYMAP
 
 logger = logging.getLogger('experiment')
 MR_KEY_NUM = len(MR_KEYMAP)
@@ -24,7 +24,7 @@ class E2EMLPData(BaseDataClass):
         """
         items = mr_string.split(", ")
         mr_data = [PAD_ID] * MR_KEY_NUM
-        lex = [None, None]  # holds lexicalized variants of NAME and NEAR
+        lex = [None, None, None]  # holds lexicalized variants of NAME and NEAR
 
         for idx, item in enumerate(items):
             key, raw_val = item.split("[")
@@ -39,6 +39,11 @@ class E2EMLPData(BaseDataClass):
             elif key == 'near':
                 mr_val = NEAR_TOKEN
                 lex[1] = raw_val[:-1]
+
+            # Delexicalization of the 'near' field
+            elif key == 'area':
+                mr_val = AREA_TOKEN
+                lex[2] = raw_val[:-1]
 
             else:
                 mr_val = raw_val[:-1]

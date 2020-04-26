@@ -2,7 +2,7 @@ import csv
 import logging
 import re
 
-from components.constants import MR_FIELDS, NAME_TOKEN, NEAR_TOKEN
+from components.constants import MR_FIELDS, NAME_TOKEN, NEAR_TOKEN, AREA_TOKEN
 from components.data.vocabulary import VocabularyShared
 
 logger = logging.getLogger('experiment')
@@ -236,7 +236,7 @@ class BaseDataClass(object):
 
         # Delexicalize target side
         if lex_list:
-            for l, t in zip(lex_list, (NAME_TOKEN, NEAR_TOKEN)):
+            for l, t in zip(lex_list, (NAME_TOKEN, NEAR_TOKEN, AREA_TOKEN)):
                 if l:
                     s = s.replace(l, t) 
         s_r_toks, s_toks = [], s.strip().split()
@@ -248,6 +248,10 @@ class BaseDataClass(object):
             elif NAME_TOKEN != tok and NAME_TOKEN in tok:
                 tok = tok.split(NAME_TOKEN)
                 tok = [NAME_TOKEN if x == '' else x for x in tok]
+                s_r_toks.extend(tok)
+            elif AREA_TOKEN != tok and AREA_TOKEN in tok:
+                tok = tok.split(AREA_TOKEN)
+                tok = [AREA_TOKEN if x == '' else x for x in tok]
                 s_r_toks.extend(tok)
             else:
                 s_r_toks.append(tok)
